@@ -1,13 +1,13 @@
 const express =require('express');
 const app =express();
-app.get('/',(req,res)=>{
-    res.send("Hello Jishnu Welcome to node.js and express.js and mongoDB");
+app.get("/user",(req,res)=>{
+    res.send({Name:"jishnu",age:"26",gender:"male"})
 })
-app.get('/home',(req,res)=>{
-    res.send("Welcome to HomePage");
+app.post("/user",(req,res)=>{
+    res.send("You have posted successfully")
 })
-app.get('/about',(req,res)=>{
-    res.send("Welcome to about Page")
+app.delete("/user",(req,res)=>{
+    res.send("You have deleted successfully")
 })
 app.listen(3000,()=>{
     console.log("Your server is running successfully at 3000");
