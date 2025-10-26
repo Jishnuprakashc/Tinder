@@ -1,6 +1,5 @@
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
-
 const userAuth = async (req, res, next) => {
   //Read the token from the req cookies
   try {
@@ -22,7 +21,6 @@ const userAuth = async (req, res, next) => {
     res.status(400).send("ERROR:" + err.message);
   }
 };
-
 module.exports = {
   userAuth,
 };
