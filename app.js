@@ -12,34 +12,6 @@ app.use(cookieParser());
 app.use("/", authRouter);
 app.use("/", profileRouter);
 app.use("/", requestRouter);
-
-app.patch("/user", async (req, res) => {
-  const disallowed = ["emailId", "password"];
-  const attemptedFields = Object.keys(req.body);
-  const forbidden = attemptedFields.filter((field) =>
-    disallowed.includes(field)
-  );
-  if (forbidden.length > 0) {
-    return res
-      .status(400)
-      .send(`Updates are not allowed for fields ${forbidden.join(" , ")}`);
-  }
-
-  const { id, firstName, lastName, skills, gender } = req.body;
-  if (skills.length > 3) {
-    return res.status(400).send("You cannot add more than 3 skills ");
-  }
-  try {
-    const user = await User.findByIdAndUpdate(
-      id,
-      { firstName, lastName, emailId, skills, gender },
-      { new: true, runValidators: true }
-    );
-    res.send("Result Updated Successfully");
-  } catch (err) {
-    res.status(400).send("Something Went Wrong");
-  }
-});
 connectDB()
   .then(() => {
     console.log("Database connection established successfully");

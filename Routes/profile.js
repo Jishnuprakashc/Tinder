@@ -19,7 +19,7 @@ profileRouter.patch("/profile/edit", userAuth, async (req, res) => {
     }
     const updatedUsers = await User.findByIdAndUpdate(
       req.user._id, // Use authenticated
-      req.body, //  Update with allowed fields
+      req.body, //Update with allowed fields
 
       { new: true, runValidators: true }
     );
